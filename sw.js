@@ -1,4 +1,4 @@
-const CACHE = "tarot-v1";
+const CACHE = "tarot-v2";
 const ASSETS = [
   "./",
   "./index.html",
