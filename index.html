@@ -1,99 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#9c7cff" />
-  <title>The Healing Vibes Empress — 24/7 Tarot Guide</title>
-  <style>
-    :root {
-      --bg:#0f0f12; --panel:#16171b; --ink:#e9ecf1; --muted:#aeb4c2;
-      --accent:#9c7cff; --accent2:#54e1c6; --rose:#ff7aa2; --gold:#ffd66b;
-      --card:#1d1f25; --chip:#23262f; --glow:0 10px 30px rgba(156,124,255,.25);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 1200px at 120% -20%, rgba(84,225,198,.10), transparent 60%),
-        radial-gradient(1000px 800px at -20% -10%, rgba(156,124,255,.10), transparent 60%),
-        var(--bg);
-    }
-    header{padding:24px 20px 10px; text-align:center}
-    h1{margin:0; font-size:1.8rem; letter-spacing:.3px}
-    .sub{color:var(--muted); margin-top:6px; font-size:.96rem}
-    .brandbar{display:flex; align-items:center; gap:12px; justify-content:center; margin-top:8px}
-    .brandbar img{height:36px; width:36px; object-fit:contain; border-radius:8px; border:1px solid #2b2e38; background:var(--card)}
-    .pill{padding:4px 10px; border:1px solid #2b2f39; border-radius:999px; background:var(--chip); color:var(--muted); font-size:.8rem}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#9c7cff" />
+<title>The Healing Vibes Empress — 24/7 Tarot Guide</title>
+<style>
+  :root{
+    --bg:#0f0f12; --panel:#16171b; --ink:#e9ecf1; --muted:#aeb4c2;
+    --accent:#9c7cff; --accent2:#54e1c6; --rose:#ff7aa2; --gold:#ffd66b;
+    --card:#1d1f25; --chip:#23262f; --glow:0 10px 30px rgba(156,124,255,.25);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 1200px at 120% -20%, rgba(84,225,198,.10), transparent 60%),
+      radial-gradient(1000px 800px at -20% -10%, rgba(156,124,255,.10), transparent 60%),
+      var(--bg);
+  }
+  header{padding:24px 20px 10px; text-align:center}
+  h1{margin:0; font-size:1.8rem; letter-spacing:.3px}
+  .sub{color:var(--muted); margin-top:6px; font-size:.96rem}
+  .brandbar{display:flex; align-items:center; gap:12px; justify-content:center; margin-top:8px}
+  .pill{padding:4px 10px; border:1px solid #2b2f39; border-radius:999px; background:var(--chip); color:var(--muted); font-size:.8rem}
 
-    main{max-width:1180px; margin:20px auto 80px; padding:0 16px; display:grid; gap:16px; grid-template-columns:360px 1fr}
-    @media (max-width: 980px){ main{grid-template-columns:1fr} }
+  main{max-width:1180px; margin:20px auto 80px; padding:0 16px; display:grid; gap:16px; grid-template-columns:360px 1fr}
+  @media (max-width: 980px){ main{grid-template-columns:1fr} }
 
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--panel);
-      border:1px solid #23242b; border-radius:16px; padding:16px;
-      box-shadow: var(--glow);
-    }
-    .panel h2{margin:.2rem 0 8px; font-size:1.05rem}
-    label{font-size:.85rem; color:var(--muted); display:block; margin:10px 0 6px}
-    select, input[type="text"], input[type="file"], textarea{
-      width:100%; background:var(--card); border:1px solid #2b2e38; color:var(--ink);
-      padding:10px 12px; border-radius:10px; outline:none; font-size:.98rem;
-    }
-    select:focus,input:focus,textarea:focus{border-color:var(--accent)}
-    .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-    .controls{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    button{
-      background:linear-gradient(180deg, var(--accent), #7b5cff);
-      border:none; color:#fff; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600;
-      box-shadow:0 6px 20px rgba(156,124,255,.35); transition:transform .04s ease;
-    }
-    button:hover{transform:translateY(-1px)}
-    .ghost{background:var(--chip); box-shadow:none; border:1px solid #2c303a; color:var(--ink)}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
-      background:var(--chip); border:1px solid #2b2f39; color:var(--muted); font-size:.85rem;
-    }
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--panel);
+    border:1px solid #23242b; border-radius:16px; padding:16px;
+    box-shadow: var(--glow);
+  }
+  .panel h2{margin:.2rem 0 8px; font-size:1.05rem}
+  label{font-size:.85rem; color:var(--muted); display:block; margin:10px 0 6px}
+  select, input[type="text"], input[type="file"], input[type="date"], textarea{
+    width:100%; background:var(--card); border:1px solid #2b2e38; color:var(--ink);
+    padding:10px 12px; border-radius:10px; outline:none; font-size:.98rem;
+  }
+  select:focus,input:focus,textarea:focus{border-color:var(--accent)}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .controls{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+  button{
+    background:linear-gradient(180deg, var(--accent), #7b5cff);
+    border:none; color:#fff; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600;
+    box-shadow:0 6px 20px rgba(156,124,255,.35); transition:transform .04s ease;
+  }
+  button:hover{transform:translateY(-1px)}
+  .ghost{background:var(--chip); box-shadow:none; border:1px solid #2c303a; color:var(--ink)}
+  .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;background:var(--chip); border:1px solid #2b2f39; color:var(--muted); font-size:.85rem;}
 
-    .cards{display:grid; gap:10px; margin-top:8px}
-    .card-item{
-      background:var(--card); border:1px solid #2b2e38; border-radius:12px; padding:10px;
-      display:grid; gap:8px;
-    }
-    .card-item .title{font-size:.9rem; color:var(--muted)}
-    .card-item .row{grid-template-columns:180px 1fr}
-    @media (max-width:520px){ .card-item .row{grid-template-columns:1fr} }
+  .cards{display:grid; gap:10px; margin-top:8px}
+  .card-item{background:var(--card); border:1px solid #2b2e38; border-radius:12px; padding:10px; display:grid; gap:8px;}
+  .card-item .title{font-size:.9rem; color:var(--muted)}
+  .card-item .row{grid-template-columns:180px 1fr}
+  @media (max-width:520px){ .card-item .row{grid-template-columns:1fr} }
 
-    .output{min-height:380px; background:
-        linear-gradient(180deg, rgba(156,124,255,.08), transparent 30%),
-        var(--panel);
-      border:1px solid #23242b; border-radius:16px; padding:16px}
-    .output h3{margin:.3rem 0 .6rem}
-    .script p{line-height:1.55; margin:.6rem 0}
-    .script .voice{color:var(--gold)}
-    .dim{color:var(--muted)}
-    .footer-note{color:var(--muted); font-size:.85rem; margin-top:8px}
+  .output{min-height:380px; background:linear-gradient(180deg, rgba(156,124,255,.08), transparent 30%), var(--panel);
+    border:1px solid #23242b; border-radius:16px; padding:16px}
+  .output h3{margin:.3rem 0 .6rem}
+  .script p{line-height:1.55; margin:.6rem 0}
+  .script .voice{color:var(--gold)}
+  .dim{color:var(--muted)}
+  .footer-note{color:var(--muted); font-size:.85rem; margin-top:8px}
 
-    .badge{padding:4px 8px; border-radius:999px; font-size:.78rem; background:rgba(84,225,198,.15); border:1px solid rgba(84,225,198,.35); color:#c8fff1;}
-    .accent2{background: rgba(156,124,255,.18); border-color: rgba(156,124,255,.4); color:#e9e1ff}
-    .rose{background: rgba(255,122,162,.15); border-color: rgba(255,122,162,.35); color:#ffe4ee}
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    @media (max-width: 960px){ .grid-2{grid-template-columns:1fr} }
+  .badge{padding:4px 8px; border-radius:999px; font-size:.78rem; background:rgba(84,225,198,.15); border:1px solid rgba(84,225,198,.35); color:#c8fff1;}
+  .accent2{background: rgba(156,124,255,.18); border-color: rgba(156,124,255,.4); color:#e9e1ff}
+  .rose{background: rgba(255,122,162,.15); border-color: rgba(255,122,162,.35); color:#ffe4ee}
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media (max-width: 960px){ .grid-2{grid-template-columns:1fr} }
 
-    .switch{display:flex; align-items:center; gap:8px}
-    .switch input{accent-color: var(--accent)}
+  .switch{display:flex; align-items:center; gap:8px}
+  .switch input{accent-color: var(--accent)}
 
-    /* Print styles */
-    @media print{
-      body{background:#fff; color:#000}
-      header,.panel:not(.output){display:none !important}
-      .output{box-shadow:none; border:none; background:#fff}
-      .output h2{display:none}
-      .badge{display:none}
-    }
-  </style>
+  @media print{
+    body{background:#fff; color:#000}
+    header,.panel:not(.output){display:none !important}
+    .output{box-shadow:none; border:none; background:#fff}
+    .output h2{display:none}
+    .badge{display:none}
+  }
+</style>
 </head>
 <body>
 <header>
@@ -105,12 +95,439 @@
 </header>
 
 <main>
-  <!-- panels, inputs, and output — full code continues here -->
+  <!-- LEFT: Inputs -->
+  <section class="panel">
+    <h2>1) Choose a Spread</h2>
+    <label>Spread Type</label>
+    <select id="spreadSelect">
+      <option value="ancestors">Ancestors (5 + optional Bottom)</option>
+      <option value="archangels">Archangels (5 + optional Bottom)</option>
+      <option value="spiritAllies">Spirit Allies (7)</option>
+      <option value="love">Love & Relationships (5)</option>
+      <option value="daily">Daily Guidance (3)</option>
+      <option value="career">Career & Abundance (5)</option>
+      <option value="yesno">Yes / No + Guidance (3)</option>
+      <option value="dailyLove">Daily Love Check-In (3)</option>
+    </select>
+
+    <div class="controls">
+      <span class="chip">Template positions auto-fill ↓</span>
+      <button class="ghost" id="editPositionsBtn" type="button">Edit Positions</button>
+      <button class="ghost" id="resetPositionsBtn" type="button">Reset</button>
+    </div>
+
+    <h2 style="margin-top:16px;">2) Enter Your Cards</h2>
+    <div id="cardsContainer" class="cards"></div>
+
+    <div id="bottomWrap" style="margin-top:10px; display:none;">
+      <label>Bottom of Deck (Optional)</label>
+      <input id="bottomCard" type="text" placeholder="e.g., The Star" />
+    </div>
+
+    <h2 style="margin-top:16px;">3) Options</h2>
+    <div class="row">
+      <div class="switch">
+        <input id="includeAffirmation" type="checkbox" />
+        <label for="includeAffirmation">Include a closing affirmation</label>
+      </div>
+      <div>
+        <label>Signature Style</label>
+        <select id="signatureStyle">
+          <option value="balanced">Balanced (default)</option>
+          <option value="ancestors">Ancestral tone</option>
+          <option value="archangels">Angelic tone</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+      <div>
+        <label>Client Name</label>
+        <input id="clientName" type="text" placeholder="e.g., Jordan A." />
+      </div>
+      <div>
+        <label>Date</label>
+        <input id="readingDate" type="date" />
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+      <div>
+        <label>Upload Logo</label>
+        <input id="logoInput" type="file" accept="image/*" />
+      </div>
+      <div>
+        <label>Brand Colors</label>
+        <div class="row" style="grid-template-columns:repeat(4,1fr); gap:6px">
+          <input id="colorAccent"   type="color" title="Accent"   value="#9c7cff"/>
+          <input id="colorAccent2"  type="color" title="Accent 2" value="#54e1c6"/>
+          <input id="colorRose"     type="color" title="Rose"     value="#ff7aa2"/>
+          <input id="colorGold"     type="color" title="Gold"     value="#ffd66b"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls" style="margin-top:14px;">
+      <button id="generateBtn" type="button">Generate Script</button>
+      <button class="ghost" id="copyBtn" type="button">Copy</button>
+      <button class="ghost" id="exportTxtBtn" type="button">Export .txt</button>
+      <button class="ghost" id="clearBtn" type="button">Clear</button>
+      <button class="ghost" id="savePrefsBtn" type="button">Save Settings</button>
+      <button class="save-btn" id="saveBtn" type="button">Save as PDF</button>
+    </div>
+
+    <div class="footer-note">Tip: add “(reversed)” after a card name to auto-adjust phrasing, e.g. <i>The Sun (reversed)</i>.</div>
+  </section>
+
+  <!-- RIGHT: Output -->
+  <section class="panel output">
+    <div class="grid-2">
+      <div><h2>Reading Script</h2></div>
+      <div style="text-align:right">
+        <span id="spreadBadge" class="badge accent2">Ancestors</span>
+      </div>
+    </div>
+    <div id="script" class="script"><p class="dim">Enter cards and click <b>Generate Script</b>.</p></div>
+  </section>
 </main>
 
 <script>
-// (your JavaScript functions: spreads, build functions, save/load prefs, service worker register)
-// already included in the version I gave you
+/* ================= Spread Templates ================= */
+const spreads = {
+  ancestors:{ name:"Ancestors", showBottom:true, positions:[
+    {label:"Their Wisdom"},{label:"Cycle to Break"},{label:"Their Gift"},{label:"Guidance Forward"},{label:"Blessing"}], build:buildAncestors },
+  archangels:{ name:"Archangels", showBottom:true, positions:[
+    {label:"Archangel Stepping Forward"},{label:"Their Protection"},{label:"Their Gift"},{label:"Their Guidance"},{label:"Their Encouragement"}], build:buildArchangels },
+  spiritAllies:{ name:"Spirit Allies", showBottom:false, positions:[
+    {label:"Ancestors’ Message"},{label:"Ancestors’ Gift"},{label:"Archangel’s Presence"},{label:"Archangel’s Guidance"},{label:"Spirit Guide’s Whisper"},{label:"Spirit Guide’s Lesson"},{label:"Unified Blessing"}], build:buildSpiritAllies },
+  love:{ name:"Love", showBottom:false, positions:[
+    {label:"Your Energy in Love"},{label:"Their Energy"},{label:"What Connects You"},{label:"Challenges"},{label:"Outcome / Guidance"}], build:buildLove },
+  daily:{ name:"Daily", showBottom:false, positions:[
+    {label:"Energy of the Day"},{label:"Focus"},{label:"Guidance"}], build:buildDaily },
+  career:{ name:"Career & Abundance", showBottom:false, positions:[
+    {label:"Current Work/Wealth Energy"},{label:"Strengths / Resources"},{label:"Obstacles / Blocks"},{label:"Advice / Next Step"},{label:"Outcome"}], build:buildCareer },
+  yesno:{ name:"Yes / No + Guidance", showBottom:false, positions:[
+    {label:"Signal"},{label:"Why / What to Know"},{label:"Guidance"}], build:buildYesNo },
+  dailyLove:{ name:"Daily Love Check-In", showBottom:false, positions:[
+    {label:"My Heart Today"},{label:"Love Influences Around Me"},{label:"Advice for Harmony"}], build:buildDailyLove }
+};
+
+/* ============== Helpers ============== */
+function tonePrefix(style){
+  if(style==="ancestors") return "“Child of our line, hear us.”";
+  if(style==="archangels") return "“Beloved one, we surround you.”";
+  return "“Let’s listen for what wants to be said.”";
+}
+function reversedHint(card){ return /reversed/i.test(card) ? " (reversed influence: introspective, slowed, or calling for recalibration)" : ""; }
+function affirmationsFor(name){
+  const base=[
+    "I walk in clarity, courage, and compassion.",
+    "I release what is not mine and claim my true power.",
+    "I trust divine timing; what’s meant for me arrives with ease.",
+    "My heart is safe, seen, and guided in love.",
+    "I am the blessing my lineage dreamed of."
+  ];
+  if(name.includes("Love")) return [
+    "I am worthy of a love that honors my soul.",
+    "I communicate clearly and listen with my heart.",
+    "I choose connections that choose me back."
+  ];
+  if(name.includes("Career")) return [
+    "My gifts create value and attract aligned abundance.",
+    "I take inspired action and welcome recognition."
+  ];
+  return base;
+}
+function pickAffirmation(name){ const arr = affirmationsFor(name); return arr[Math.floor(Math.random()*arr.length)]; }
+function withCard(o){ return `<b>${o.card}</b>${reversedHint(o.card)}`; }
+const YES=["The Sun","The Star","The World","The Lovers","Judgement","Strength","Ace of Cups","Ace of Pentacles","Two of Cups","Six of Wands","Ten of Cups","Ten of Pentacles","Four of Wands","Wheel of Fortune","Page of Cups","Knight of Cups","Queen of Pentacles","King of Pentacles","King of Wands","Temperance","Three of Cups"];
+const NO =["The Tower","Death","The Devil","Ten of Swords","Five of Cups","Three of Swords","Nine of Swords","Five of Pentacles","Seven of Swords","Eight of Swords","Five of Wands"];
+function yesNoLeaning(card){
+  const base = card.replace(/\s*\(reversed\)\s*/i,'').trim();
+  const isRev = /reversed/i.test(card);
+  let lean = "maybe";
+  if(YES.includes(base)) lean = "yes";
+  if(NO.includes(base))  lean = "no";
+  if(isRev && (lean==="yes"||lean==="no")) lean = "maybe";
+  return lean;
+}
+
+/* ============== Builders ============== */
+function buildAncestors({cards,bottom,style,includeAff,header}){
+  const [c1,c2,c3,c4,c5]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${c1.pos}</b><br>They show me ${withCard(c1)}. This is their current message and the truth they want honored.</p>
+  <p><b>Card 2 – ${c2.pos}</b><br>I’m shown ${withCard(c2)}. This marks a pattern to release so the road ahead is lighter.</p>
+  <p><b>Card 3 – ${c3.pos}</b><br>Through ${withCard(c3)}, they highlight a strength you inherit — claim it fully.</p>
+  <p><b>Card 4 – ${c4.pos}</b><br>Guidance arrives as ${withCard(c4)}: take the practical step and keep faith with Spirit.</p>
+  <p><b>Card 5 – ${c5.pos}</b><br>Their blessing flows through ${withCard(c5)} — protection, encouragement, renewal.</p>
+  ${bottom?`<p class="dim"><i>Bottom of Deck:</i> <b>${bottom}</b>${reversedHint(bottom)} — the atmosphere your ancestors breathe over this reading.</p>`:""}
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Ancestors")}</p>`:""}`;
+}
+function buildArchangels({cards,bottom,style,includeAff,header}){
+  const [c1,c2,c3,c4,c5]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${c1.pos}</b><br>${withCard(c1)} signals angelic presence and beauty/wisdom surrounding you.</p>
+  <p><b>Card 2 – ${c2.pos}</b><br>Through ${withCard(c2)}, they shield you from what drains or distracts — you are safe.</p>
+  <p><b>Card 3 – ${c3.pos}</b><br>Their gift arrives as ${withCard(c3)}: courage, clarity, or healing where you need it most.</p>
+  <p><b>Card 4 – ${c4.pos}</b><br>Guidance in ${withCard(c4)}: slow down, listen, act from truth over fear.</p>
+  <p><b>Card 5 – ${c5.pos}</b><br>Encouragement: ${withCard(c5)} — victory and recognition are aligning.</p>
+  ${bottom?`<p class="dim"><i>Bottom of Deck:</i> <b>${bottom}</b>${reversedHint(bottom)} — divine timing holds this whole reading.</p>`:""}
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Archangels")}</p>`:""}`;
+}
+function buildSpiritAllies({cards,style,includeAff,header}){
+  const [a1,a2,an1,an2,g1,g2,ub]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${a1.pos}</b><br>Ancestors speak through ${withCard(a1)} — remember what anchors you.</p>
+  <p><b>Card 2 – ${a2.pos}</b><br>Their gift in ${withCard(a2)} lives in your bloodline — claim it.</p>
+  <p><b>Card 3 – ${an1.pos}</b><br>Archangelic presence in ${withCard(an1)} brings protection and uplift.</p>
+  <p><b>Card 4 – ${an2.pos}</b><br>Angelic guidance: ${withCard(an2)} — act with clear intention and faith.</p>
+  <p><b>Card 5 – ${g1.pos}</b><br>Guide’s whisper through ${withCard(g1)}: a small aligned step opens the door.</p>
+  <p><b>Card 6 – ${g2.pos}</b><br>Guide’s lesson in ${withCard(g2)}: this is how your soul grows now.</p>
+  <p><b>Card 7 – ${ub.pos}</b><br>Unified blessing: ${withCard(ub)} — all voices agree you are supported.</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Spirit Allies")}</p>`:""}`;
+}
+function buildLove({cards,style,includeAff,header}){
+  const [c1,c2,c3,c4,c5]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${c1.pos}</b><br>${withCard(c1)} reflects your heart’s current state — needs, desires, readiness.</p>
+  <p><b>Card 2 – ${c2.pos}</b><br>${withCard(c2)} shows their emotional space and how they meet the bond.</p>
+  <p><b>Card 3 – ${c3.pos}</b><br>${withCard(c3)} reveals what connects you — the lesson or blessing you share.</p>
+  <p><b>Card 4 – ${c4.pos}</b><br>Challenge via ${withCard(c4)} — awareness is healing; this is workable.</p>
+  <p><b>Card 5 – ${c5.pos}</b><br>Guidance: ${withCard(c5)} — choose the path that honors growth and tenderness.</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Love")}</p>`:""}`;
+}
+function buildDaily({cards,style,includeAff,header}){
+  const [c1,c2,c3]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${c1.pos}</b>: ${withCard(c1)}</p>
+  <p><b>Card 2 – ${c2.pos}</b>: ${withCard(c2)}</p>
+  <p><b>Card 3 – ${c3.pos}</b>: ${withCard(c3)}</p>
+  <p class="voice">“Walk lightly, listen closely.”</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Daily")}</p>`:""}`;
+}
+function buildCareer({cards,style,includeAff,header}){
+  const [c1,c2,c3,c4,c5]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${c1.pos}</b><br>${withCard(c1)} shows the current work/wealth energy.</p>
+  <p><b>Card 2 – ${c2.pos}</b><br>${withCard(c2)} highlights strengths and resources available now.</p>
+  <p><b>Card 3 – ${c3.pos}</b><br>${withCard(c3)} names the obstacle/block to address.</p>
+  <p><b>Card 4 – ${c4.pos}</b><br>${withCard(c4)} offers practical advice and the next aligned step.</p>
+  <p><b>Card 5 – ${c5.pos}</b><br>${withCard(c5)} reveals the likely outcome if you follow guidance.</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Career & Abundance")}</p>`:""}`;
+}
+function buildYesNo({cards,style,includeAff,header}){
+  const [sig,why,guid]=cards;
+  const leaning = yesNoLeaning(sig.card);
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${sig.pos}</b><br>${withCard(sig)} → signal reads: <b>${leaning.toUpperCase()}</b>.</p>
+  <p><b>Card 2 – ${why.pos}</b><br>${withCard(why)} explains the “why / what to know”.</p>
+  <p><b>Card 3 – ${guid.pos}</b><br>${withCard(guid)} gives the actionable guidance.</p>
+  <p class="voice">“Align with truth; the path gets simple.”</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Yes/No")}</p>`:""}`;
+}
+function buildDailyLove({cards,style,includeAff,header}){
+  const [h,inf,adv]=cards;
+  return `${header}
+  <p class="voice">${tonePrefix(style)}</p>
+  <p><b>Card 1 – ${h.pos}</b><br>${withCard(h)} reflects your heart today.</p>
+  <p><b>Card 2 – ${inf.pos}</b><br>${withCard(inf)} shows the love influences around you.</p>
+  <p><b>Card 3 – ${adv.pos}</b><br>${withCard(adv)} offers harmony advice.</p>
+  ${includeAff?`<p class="voice"><b>Affirmation:</b> ${pickAffirmation("Daily Love")}</p>`:""}`;
+}
+
+/* ============== Elements & Wiring ============== */
+const spreadSelect=document.getElementById('spreadSelect');
+const cardsContainer=document.getElementById('cardsContainer');
+const bottomWrap=document.getElementById('bottomWrap');
+const bottomCard=document.getElementById('bottomCard');
+const scriptEl=document.getElementById('script');
+const badge=document.getElementById('spreadBadge');
+const includeAffirmation=document.getElementById('includeAffirmation');
+const signatureStyle=document.getElementById('signatureStyle');
+const clientName=document.getElementById('clientName');
+const readingDate=document.getElementById('readingDate');
+const logoInput=document.getElementById('logoInput');
+const colorAccent=document.getElementById('colorAccent');
+const colorAccent2=document.getElementById('colorAccent2');
+const colorRose=document.getElementById('colorRose');
+const colorGold=document.getElementById('colorGold');
+const generateBtn=document.getElementById('generateBtn');
+const copyBtn=document.getElementById('copyBtn');
+const exportTxtBtn=document.getElementById('exportTxtBtn');
+const clearBtn=document.getElementById('clearBtn');
+const savePrefsBtn=document.getElementById('savePrefsBtn');
+const saveBtn=document.getElementById('saveBtn');
+
+let currentSpreadKey=spreadSelect.value;
+let customPositions=null;
+
+(function init(){
+  // preload date
+  const today=new Date();
+  if (readingDate) readingDate.value = today.toISOString().slice(0,10);
+  loadSpread(currentSpreadKey);
+
+  spreadSelect.addEventListener('change', e=>{ currentSpreadKey=e.target.value; loadSpread(currentSpreadKey); });
+  document.getElementById('editPositionsBtn').addEventListener('click', onEditPositions);
+  document.getElementById('resetPositionsBtn').addEventListener('click', onResetPositions);
+  generateBtn.addEventListener('click', onGenerate);
+  copyBtn.addEventListener('click', onCopy);
+  exportTxtBtn.addEventListener('click', onExportTxt);
+  clearBtn.addEventListener('click', onClear);
+  saveBtn.addEventListener('click', ()=>window.print());
+  logoInput.addEventListener('change', onLogo);
+  [colorAccent,colorAccent2,colorRose,colorGold].forEach(inp=> inp.addEventListener('input', applyColors));
+  savePrefsBtn.addEventListener('click', savePrefs);
+  loadPrefs();
+})();
+
+function loadSpread(key){
+  const spec=spreads[key];
+  badge.textContent=spec.name;
+  badge.className = "badge " + (key==="love" || key==="dailyLove" ? "rose" : "accent2");
+  bottomWrap.style.display = spec.showBottom ? 'block' : 'none';
+  renderCards(spec);
+  scriptEl.innerHTML = `<p class="dim">Enter cards and click <b>Generate Script</b>.</p>`;
+}
+function renderCards(spec){
+  cardsContainer.innerHTML = "";
+  const positions = (customPositions?.[currentSpreadKey]) || spec.positions;
+  positions.forEach((pos, idx)=>{
+    const item = document.createElement('div');
+    item.className = 'card-item';
+    item.innerHTML = `
+      <div class="title">${idx+1}. <span class="poslabel">${pos.label}</span></div>
+      <div class="row">
+        <input type="text" class="posinput" value="${pos.label}" aria-label="Position label">
+        <input type="text" class="cardinput" placeholder="Card name (e.g., The Sun or The Sun (reversed))" aria-label="Card name">
+      </div>
+    `;
+    cardsContainer.appendChild(item);
+  });
+}
+function onEditPositions(){
+  cardsContainer.querySelectorAll('.posinput').forEach(el=>{
+    el.style.borderColor = 'var(--accent2)';
+    setTimeout(()=> el.style.borderColor = '#2b2e38', 600);
+  });
+}
+function onResetPositions(){
+  if(!customPositions){ renderCards(spreads[currentSpreadKey]); return; }
+  delete customPositions[currentSpreadKey];
+  renderCards(spreads[currentSpreadKey]);
+}
+
+function headerLine(){
+  const name = clientName.value.trim();
+  const date = readingDate.value ? new Date(readingDate.value).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'}) : '';
+  if(!name && !date) return '';
+  return `<p class="dim"><i>${[name,date].filter(Boolean).join(' • ')}</i></p>`;
+}
+
+function onGenerate(){
+  const spec = spreads[currentSpreadKey];
+  const nodes = [...cardsContainer.querySelectorAll('.card-item')];
+  const cards = nodes.map(node=>{
+    const pos = node.querySelector('.posinput').value.trim() || '(Position)';
+    const card = node.querySelector('.cardinput').value.trim() || '—';
+    return {pos, card};
+  });
+  const posLabels = nodes.map(n => ({ label: n.querySelector('.posinput').value.trim() || '(Position)'}));
+  customPositions = customPositions || {};
+  customPositions[currentSpreadKey] = posLabels;
+
+  if (cards.some(c => c.card === '—')) {
+    scriptEl.innerHTML = `<p class="dim">Please enter all card names, then click <b>Generate Script</b>.</p>`;
+    return;
+  }
+  const bottom = spreads[currentSpreadKey].showBottom ? (bottomCard.value.trim() || "") : "";
+  const style = signatureStyle.value;
+  const includeAff = includeAffirmation.checked;
+  const header = headerLine();
+  const html = spec.build({cards, bottom, style, includeAff, header});
+  scriptEl.innerHTML = `<h3>${spec.name} Reading</h3>${html}`;
+}
+
+async function onCopy(){
+  const text = toPlainText(scriptEl.innerHTML);
+  try{
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = "Copied ✓";
+    setTimeout(()=> copyBtn.textContent = "Copy", 1200);
+  }catch(e){
+    copyBtn.textContent = "Copy failed";
+    setTimeout(()=> copyBtn.textContent = "Copy", 1200);
+  }
+}
+function onExportTxt(){
+  const text=toPlainText(scriptEl.innerHTML);
+  const blob=new Blob([text],{type:'text/plain'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`tarot-reading-${Date.now()}.txt`; a.click(); URL.revokeObjectURL(a.href);
+}
+function onClear(){
+  cardsContainer.querySelectorAll('.cardinput').forEach(i=> i.value='';
+  );
+  if(bottomCard) bottomCard.value='';
+  scriptEl.innerHTML='<p class="dim">Cleared. Enter cards and click <b>Generate Script</b>.</p>';
+}
+function toPlainText(html){
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  div.querySelectorAll('p, h3').forEach(el => el.insertAdjacentText('beforebegin', '\n'));
+  return div.innerText.replace(/\n{3,}/g, '\n\n').trim();
+}
+
+/* ===== Branding: logo + colors + prefs ===== */
+function onLogo(ev){
+  const f=ev.target.files&&ev.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    // you can display a small logo somewhere if you like
+    document.title = "Healing Vibes Empress — 24/7 Tarot Guide";
+  };
+  r.readAsDataURL(f);
+}
+function applyColors(){
+  document.documentElement.style.setProperty('--accent',  colorAccent.value);
+  document.documentElement.style.setProperty('--accent2', colorAccent2.value);
+  document.documentElement.style.setProperty('--rose',    colorRose.value);
+  document.documentElement.style.setProperty('--gold',    colorGold.value);
+}
+function savePrefs(){
+  const data={
+    includeAff: includeAffirmation.checked,
+    style: signatureStyle.value,
+    date: readingDate.value,
+    client: clientName.value,
+    colors: { accent:colorAccent.value, accent2:colorAccent2.value, rose:colorRose.value, gold:colorGold.value }
+  };
+  localStorage.setItem('hve_reader_prefs', JSON.stringify(data));
+}
+function loadPrefs(){
+  try{
+    const raw=localStorage.getItem('hve_reader_prefs'); if(!raw) return;
+    const d=JSON.parse(raw);
+    if(typeof d.includeAff==='boolean') includeAffirmation.checked=d.includeAff;
+    if(d.style) signatureStyle.value=d.style;
+    if(d.date) readingDate.value=d.date;
+    if(d.client) clientName.value=d.client;
+    if(d.colors){
+      colorAccent.value=d.colors.accent||colorAccent.value;
+      colorAccent2.value=d.colors.accent2||colorAccent2.value;
+      colorRose.value=d.colors.rose||colorRose.value;
+      colorGold.value=d.colors.gold||colorGold.value;
+      applyColors();
+    }
+  }catch(e){}
+}
 </script>
 
 <script>
