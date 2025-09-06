@@ -129,9 +129,3 @@ function closeLightbox() { lb.classList.remove('open'); }
 </script>
 </body>
 </html>
-
-""".replace("{items}", str(items))
-
-out = Path("/mnt/data/gallery.html")
-out.write_text(html, encoding="utf-8")
-str(out)
