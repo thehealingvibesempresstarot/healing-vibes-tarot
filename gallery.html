@@ -1,112 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Healing Vibes Empress — Tarot Gallery</title>
-<meta name="theme-color" content="#0f0f12">
-<style>
-  :root{--bg:#0f0f12;--ink:#e9ecf1;--muted:#aeb4c2;--accent:#9c7cff;--card:#16171b;}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-  header{padding:18px 16px;text-align:center;border-bottom:1px solid #24262e;background:
-    radial-gradient(900px 600px at 120% -20%,rgba(156,124,255,.08),transparent),var(--bg)}
-  h1{margin:0;font-size:1.6rem}
-  .sub{color:var(--muted);font-size:.95rem;margin-top:6px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:18px;max-width:1400px;margin:0 auto}
-  figure{margin:0;background:var(--card);border:1px solid #23242b;border-radius:14px;overflow:hidden;transition:transform .05s ease, box-shadow .2s}
-  figure:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.35)}
-  img{display:block;width:100%;height:100%;aspect-ratio:2/3;object-fit:cover}
-  figcaption{padding:10px 12px;border-top:1px solid #23242b;color:var(--muted);font-size:.92rem;text-align:center}
-  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px;z-index:40}
-  .lightbox.open{display:flex}
-  .lightbox img{max-width:90vw;max-height:85vh;border-radius:12px;border:2px solid #444;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-  .close{position:absolute;top:10px;right:10px;background:#222;color:#fff;border:1px solid #555;border-radius:10px;padding:8px 10px;cursor:pointer}
-  .dl{position:absolute;bottom:14px;right:14px;background:#1d1f25;border:1px solid #2b2e38;color:#e9ecf1;border-radius:10px;padding:8px 10px;text-decoration:none}
-  .footer{text-align:center;color:var(--muted);padding:14px}
-</style>
-</head>
-<body>
-<header>
-  <h1>Healing Vibes Empress — Tarot Deck</h1>
-  <div class="sub">Tap any card to view full size • Uses your uploaded filenames as-is</div>
-</header>
-
-<main class="grid" id="grid"></main>
-
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="close" id="lbClose" aria-label="Close">Close ✕</button>
-  <img id="lbImg" alt="Tarot Card">
-  <a id="lbDl" class="dl" download>Download</a>
-</div>
-
-<footer class="footer">© Healing Vibes Empress — Tarot Deck</footer>
-
+<div id="gallery"></div>
 <script>
-// 1) If your images live in /cards, set basePath = "cards/"
-//    If they’re in the repo root, set basePath = "".
-const basePath = "cards/";
-
-// 2) Paste your exact filenames here (mixed .jpg/.png is fine)
-const FILENAMES = [
-  // EXAMPLES — replace with your full list
-  "00-the-fool.jpg",
-  "A_tarot_card_featuring_'The_Fool,'_portrayed_as_an.png",
-  "21-world.jpg",
-  "A_tarot_card_featuring_'The_World,'_portrayed_as_a.png",
-  "cups-ace.jpg",
-  "A_tarot_card_featuring_the_'Queen_of_Wands,'_portr.png",
-  // ... paste ALL your filenames here ...
-];
-
-// Turn a messy filename into a pretty caption
-function prettyTitle(name){
-  let base = name.replace(/\.[a-z0-9]+$/i,''); // drop extension
-  // Special cases for your “A_tarot_card_featuring…” pattern:
-  if (base.startsWith("A_tarot_card_featuring")) {
-    base = base
-      .replace(/^A_tarot_card_featuring[_-]*/,'')
-      .replace(/(^|[_-])(+|the)/gi,' ')
-      .replace(/[_-]+/g,' ')
-      .replace(/['"]/g,'')
-      .replace(/portr(ayed|ay|ayed)?(.*)?$/i,'')
-      .trim();
-  }
-  // Common canonical names (if the file is already canonical, keep it pretty)
-  base = base
-    .replace(/^\d{2}-/,'')            // drop leading number like 00-
-    .replace(/-/g,' ')                 // hyphens to spaces
-    .replace(/\b\w/g,m=>m.toUpperCase());
-  // Fix common tarot words casing
-  base = base
-    .replace(/\bOf\b/g,'of')
-    .replace(/\bThe\b/g,'The')
-    .replace(/\bAce|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Page|Knight|Queen|King\b/g, m=>m);
-  return base || name;
-}
-
-const grid = document.getElementById('grid');
-for (const fname of FILENAMES) {
-  const fig = document.createElement('figure');
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.src = basePath + fname;
-  img.alt = prettyTitle(fname);
-  const cap = document.createElement('figcaption');
-  cap.textContent = img.alt;
-  fig.appendChild(img); fig.appendChild(cap);
-  fig.addEventListener('click', ()=> openLightbox(img.currentSrc || img.src, img.alt));
-  grid.appendChild(fig);
-}
-
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbDl = document.getElementById('lbDl');
-document.getElementById('lbClose').onclick = closeLightbox;
-lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
-
-function openLightbox(src, title){ lb.classList.add('open'); lbImg.src=src; lbImg.alt=title; lbDl.href=src; lbDl.download = src.split('/').pop(); }
-function closeLightbox(){ lb.classList.remove('open'); }
+  const cards = [
+    "fool.png","magician.png","high_priestess.png","empress.png","emperor.png",
+    "hierophant.png","lovers.png","chariot.png","strength.png","hermit.png",
+    "wheel_of_fortune.png","justice.png","hanged_man.png","death.png","temperance.png",
+    "devil.png","tower.png","star.png","moon.png","sun.png","judgement.png","world.png",
+    // minors
+    "ace_wands.png","two_wands.png", /* ... all minors ... */ "king_pentacles.png"
+  ];
+  const gallery = document.getElementById("gallery");
+  cards.forEach(file => {
+    const img = document.createElement("img");
+    img.src = "cards/" + file;
+    img.className = "tarot-card";
+    gallery.appendChild(img);
+  });
 </script>
-</body>
-</html>
