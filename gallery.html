@@ -9,7 +9,8 @@
   :root{--bg:#0f0f12;--ink:#e9ecf1;--muted:#aeb4c2;--accent:#9c7cff;--card:#16171b;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-  header{padding:18px 16px;text-align:center;border-bottom:1px solid #24262e;background:radial-gradient(900px 600px at 120% -20%,rgba(156,124,255,.08),transparent),var(--bg)}
+  header{padding:18px 16px;text-align:center;border-bottom:1px solid #24262e;background:
+    radial-gradient(900px 600px at 120% -20%,rgba(156,124,255,.08),transparent),var(--bg)}
   h1{margin:0;font-size:1.6rem}
   .sub{color:var(--muted);font-size:.95rem;margin-top:6px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:18px;max-width:1400px;margin:0 auto}
@@ -28,7 +29,7 @@
 <body>
 <header>
   <h1>Healing Vibes Empress — Tarot Deck</h1>
-  <div class="sub">Tap any card to view full size • Files live in <code>/cards/</code></div>
+  <div class="sub">Tap any card to view full size • Uses your uploaded filenames as-is</div>
 </header>
 
 <main class="grid" id="grid"></main>
@@ -42,39 +43,59 @@
 <footer class="footer">© Healing Vibes Empress — Tarot Deck</footer>
 
 <script>
-const majors = [
-  "00-the-fool","01-magician","02-high-priestess","03-empress","04-emperor","05-hierophant",
-  "06-lovers","07-chariot","08-strength","09-hermit","10-wheel-of-fortune","11-justice",
-  "12-hanged-man","13-death","14-temperance","15-devil","16-tower","17-star","18-moon",
-  "19-sun","20-judgement","21-world"
-];
-const suits = ["wands","cups","swords","pentacles"];
-const ranks = ["ace","two","three","four","five","six","seven","eight","nine","ten","page","knight","queen","king"];
+// 1) If your images live in /cards, set basePath = "cards/"
+//    If they’re in the repo root, set basePath = "".
+const basePath = "cards/";
 
-const ITEMS = [
-  ...majors.map(slug => ({slug, title: slug.replace(/^(\d+)-/,'').replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase())})),
-  ...suits.flatMap(s => ranks.map(r => ({
-    slug: `${s}-${r}`,
-    title: `${r.charAt(0).toUpperCase()+r.slice(1)} of ${s.charAt(0).toUpperCase()+s.slice(1)}`
-  })))
+// 2) Paste your exact filenames here (mixed .jpg/.png is fine)
+const FILENAMES = [
+  // EXAMPLES — replace with your full list
+  "00-the-fool.jpg",
+  "A_tarot_card_featuring_'The_Fool,'_portrayed_as_an.png",
+  "21-world.jpg",
+  "A_tarot_card_featuring_'The_World,'_portrayed_as_a.png",
+  "cups-ace.jpg",
+  "A_tarot_card_featuring_the_'Queen_of_Wands,'_portr.png",
+  // ... paste ALL your filenames here ...
 ];
 
-const grid = document.getElementById('grid');
-function tryLoad(img, slug) {
-  img.src = `cards/${slug}.jpg`;
-  img.onerror = () => { img.onerror = null; img.src = `cards/${slug}.png`; };
+// Turn a messy filename into a pretty caption
+function prettyTitle(name){
+  let base = name.replace(/\.[a-z0-9]+$/i,''); // drop extension
+  // Special cases for your “A_tarot_card_featuring…” pattern:
+  if (base.startsWith("A_tarot_card_featuring")) {
+    base = base
+      .replace(/^A_tarot_card_featuring[_-]*/,'')
+      .replace(/(^|[_-])(+|the)/gi,' ')
+      .replace(/[_-]+/g,' ')
+      .replace(/['"]/g,'')
+      .replace(/portr(ayed|ay|ayed)?(.*)?$/i,'')
+      .trim();
+  }
+  // Common canonical names (if the file is already canonical, keep it pretty)
+  base = base
+    .replace(/^\d{2}-/,'')            // drop leading number like 00-
+    .replace(/-/g,' ')                 // hyphens to spaces
+    .replace(/\b\w/g,m=>m.toUpperCase());
+  // Fix common tarot words casing
+  base = base
+    .replace(/\bOf\b/g,'of')
+    .replace(/\bThe\b/g,'The')
+    .replace(/\bAce|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Page|Knight|Queen|King\b/g, m=>m);
+  return base || name;
 }
 
-for (const it of ITEMS) {
+const grid = document.getElementById('grid');
+for (const fname of FILENAMES) {
   const fig = document.createElement('figure');
   const img = document.createElement('img');
   img.loading = 'lazy';
-  img.alt = it.title;
-  tryLoad(img, it.slug);
+  img.src = basePath + fname;
+  img.alt = prettyTitle(fname);
   const cap = document.createElement('figcaption');
-  cap.textContent = it.title;
+  cap.textContent = img.alt;
   fig.appendChild(img); fig.appendChild(cap);
-  fig.addEventListener('click', ()=> openLightbox(img.currentSrc || img.src, it.title));
+  fig.addEventListener('click', ()=> openLightbox(img.currentSrc || img.src, img.alt));
   grid.appendChild(fig);
 }
 
@@ -83,6 +104,7 @@ const lbImg = document.getElementById('lbImg');
 const lbDl = document.getElementById('lbDl');
 document.getElementById('lbClose').onclick = closeLightbox;
 lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+
 function openLightbox(src, title){ lb.classList.add('open'); lbImg.src=src; lbImg.alt=title; lbDl.href=src; lbDl.download = src.split('/').pop(); }
 function closeLightbox(){ lb.classList.remove('open'); }
 </script>
