@@ -1,170 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Healing Vibes Empress — Tarot Gallery</title>
-<meta name="theme-color" content="#0f0f12">
-<style>
-  :root{--bg:#0f0f12;--ink:#e9ecf1;--muted:#aeb4c2;--accent:#9c7cff;--card:#16171b;}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-  header{padding:18px 16px;text-align:center;border-bottom:1px solid #24262e;background:radial-gradient(900px 600px at 120% -20%,rgba(156,124,255,.08),transparent),var(--bg)}
-  h1{margin:0;font-size:1.6rem}
-  .sub{color:var(--muted);font-size:.95rem;margin-top:6px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:18px;max-width:1400px;margin:0 auto}
-  figure{margin:0;background:var(--card);border:1px solid #23242b;border-radius:14px;overflow:hidden;transition:transform .05s ease, box-shadow .2s}
-  figure:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.35)}
-  img{display:block;width:100%;height:100%;aspect-ratio:2/3;object-fit:cover}
-  figcaption{padding:10px 12px;border-top:1px solid #23242b;color:var(--muted);font-size:.92rem;text-align:center}
-  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px;z-index:40}
-  .lightbox.open{display:flex}
-  .lightbox img{max-width:90vw;max-height:85vh;border-radius:12px;border:2px solid #444;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-  .close{position:absolute;top:10px;right:10px;background:#222;color:#fff;border:1px solid #555;border-radius:10px;padding:8px 10px;cursor:pointer}
-  .dl{position:absolute;bottom:14px;right:14px;background:#1d1f25;border:1px solid #2b2e38;color:#e9ecf1;border-radius:10px;padding:8px 10px;text-decoration:none}
-  .footer{text-align:center;color:var(--muted);padding:14px}
-  .count{color:var(--muted);margin-top:8px}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Healing Vibes Empress — Tarot Gallery</title>
+  <meta name="theme-color" content="#0f0f12" />
+  <style>
+    :root{--bg:#0f0f12;--ink:#e9ecf1;--muted:#aeb4c2;--accent:#9c7cff;--card:#16171b;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    header{padding:18px 16px;text-align:center;border-bottom:1px solid #24262e;background:radial-gradient(900px 600px at 120% -20%,rgba(156,124,255,.08),transparent),var(--bg)}
+    h1{margin:0;font-size:1.6rem}
+    .sub{color:var(--muted);font-size:.95rem;margin-top:6px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:18px;max-width:1400px;margin:0 auto}
+    figure{margin:0;background:var(--card);border:1px solid #23242b;border-radius:14px;overflow:hidden;transition:transform .05s ease, box-shadow .2s}
+    figure:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.35)}
+    img{display:block;width:100%;height:100%;aspect-ratio:2/3;object-fit:cover}
+    figcaption{padding:10px 12px;border-top:1px solid #23242b;color:var(--muted);font-size:.92rem;text-align:center}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px;z-index:40}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:90vw;max-height:85vh;border-radius:12px;border:2px solid #444;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    .close{position:absolute;top:10px;right:10px;background:#222;color:#fff;border:1px solid #555;border-radius:10px;padding:8px 10px;cursor:pointer}
+    .dl{position:absolute;bottom:14px;right:14px;background:#1d1f25;border:1px solid #2b2e38;color:#e9ecf1;border-radius:10px;padding:8px 10px;text-decoration:none}
+    .footer{text-align:center;color:var(--muted);padding:14px}
+    .count{color:var(--muted);margin-top:8px}
+  </style>
 </head>
 <body>
-<header>
-  <h1>Healing Vibes Empress — Tarot Deck</h1>
-  <div class="sub">Images are loaded from <code>/cards/</code> using flexible name matching (.jpg/.png/.jpeg/.webp).</div>
-  <div id="count" class="count">Loading…</div>
-</header>
+  <header>
+    <h1>Healing Vibes Empress — Tarot Deck</h1>
+    <div class="sub">Images are loaded from <code>/cards/</code> using flexible name matching (.jpg/.png/.jpeg/.webp).</div>
+    <div id="count" class="count">Loading…</div>
+  </header>
 
-<main class="grid" id="grid"></main>
+  <main class="grid" id="grid"></main>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="close" id="lbClose" aria-label="Close">Close ✕</button>
-  <img id="lbImg" alt="Tarot Card">
-  <a id="lbDl" class="dl" download>Download</a>
-</div>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" id="lbClose" aria-label="Close">Close ✕</button>
+    <img id="lbImg" alt="Tarot Card" />
+    <a id="lbDl" class="dl" download>Download</a>
+  </div>
 
-<footer class="footer">© Healing Vibes Empress — Tarot Deck</footer>
+  <footer class="footer">© Healing Vibes Empress — Tarot Deck</footer>
 
-<script>
-/* ------------------ Card Catalog ------------------ */
-const majors = [
-  ["00-the-fool","The Fool"],
-  ["01-magician","The Magician"],
-  ["02-high-priestess","The High Priestess"],
-  ["03-empress","The Empress"],
-  ["04-emperor","The Emperor"],
-  ["05-hierophant","The Hierophant"],
-  ["06-lovers","The Lovers"],
-  ["07-chariot","The Chariot"],
-  ["08-strength","Strength"],
-  ["09-hermit","The Hermit"],
-  ["10-wheel-of-fortune","Wheel of Fortune"],
-  ["11-justice","Justice"],
-  ["12-hanged-man","The Hanged Man"],
-  ["13-death","Death"],
-  ["14-temperance","Temperance"],
-  ["15-devil","The Devil"],
-  ["16-tower","The Tower"],
-  ["17-star","The Star"],
-  ["18-moon","The Moon"],
-  ["19-sun","The Sun"],
-  ["20-judgement","Judgement"],
-  ["21-world","The World"],
-];
+  <script>
+  /* ------------------ Card Catalog ------------------ */
+  const majors = [
+    ["00-the-fool","The Fool"],["01-magician","The Magician"],["02-high-priestess","The High Priestess"],
+    ["03-empress","The Empress"],["04-emperor","The Emperor"],["05-hierophant","The Hierophant"],
+    ["06-lovers","The Lovers"],["07-chariot","The Chariot"],["08-strength","Strength"],
+    ["09-hermit","The Hermit"],["10-wheel-of-fortune","Wheel of Fortune"],["11-justice","Justice"],
+    ["12-hanged-man","The Hanged Man"],["13-death","Death"],["14-temperance","Temperance"],
+    ["15-devil","The Devil"],["16-tower","The Tower"],["17-star","The Star"],
+    ["18-moon","The Moon"],["19-sun","The Sun"],["20-judgement","Judgement"],["21-world","The World"],
+  ];
 
-const suits = ["wands","cups","swords","pentacles"];
-const ranks = [
-  ["ace","Ace"],["two","Two"],["three","Three"],["four","Four"],["five","Five"],
-  ["six","Six"],["seven","Seven"],["eight","Eight"],["nine","Nine"],["ten","Ten"],
-  ["page","Page"],["knight","Knight"],["queen","Queen"],["king","King"]
-];
+  const suits = ["wands","cups","swords","pentacles"];
+  const ranks = [
+    ["ace","Ace"],["two","Two"],["three","Three"],["four","Four"],["five","Five"],
+    ["six","Six"],["seven","Seven"],["eight","Eight"],["nine","Nine"],["ten","Ten"],
+    ["page","Page"],["knight","Knight"],["queen","Queen"],["king","King"]
+  ];
 
-/* ------------------ Filename Candidates ------------------ */
-// For majors: try "NN-name", then "name" (for folks who saved as 'magician.jpg')
-function majorCandidates(slug){
-  const name = slug.replace(/^\d+-/,'');
-  return [slug, name, slug.replace(/-/g,'_'), name.replace(/-/g,'_')];
-}
+  /* Accept both your current names and the canonical ones */
+  const EXT = ["jpg","png","jpeg","webp","JPG","PNG","JPEG","WEBP"];
+  const rankNum = {ace:"01",two:"02",three:"03",four:"04",five:"05",six:"06",seven:"07",eight:"08",nine:"09",ten:"10",page:"11",knight:"12",queen:"13",king:"14"};
+  const T = s => s.charAt(0).toUpperCase()+s.slice(1);
 
-// For suits: accept both "suit-rank" and "rank-of-suit" (and underscore variants)
-function suitCandidates(suit, rank){
-  const a = `${suit}-${rank}`;               // wands-ace
-  const b = `${rank}-of-${suit}`;            // ace-of-wands
-  const c = a.replace(/-/g,'_');             // wands_ace
-  const d = b.replace(/-/g,'_');             // ace_of_wands
-  return [a,b,c,d];
-}
-
-const EXT = ["jpg","png","jpeg","webp"];
-
-/* Try each candidate + extension in order; if all fail, remove the figure */
-function loadBest(img, candidates, onFail){
-  let i = 0, j = 0;
-  function tryNext(){
-    if(i >= candidates.length){ onFail(); return; }
-    const base = candidates[i];
-    const src = `cards/${base}.${EXT[j]}`;
-    img.onerror = ()=>{
-      j++;
-      if(j >= EXT.length){ j = 0; i++; }
-      tryNext();
-    };
-    img.onload = ()=>{ img.onerror = null; };
-    img.src = src;
+  function majorCandidates(slug){
+    const name = slug.replace(/^\d+-/,'');
+    return [slug, name, slug.replace(/-/g,'_'), name.replace(/-/g,'_')];
   }
-  tryNext();
-}
+  function suitCandidates(suit, rank){
+    const suitT = T(suit), rankT = T(rank), n = rankNum[rank];
+    return [
+      // canonical hyphen & "rank-of-suit"
+      `${suit}-${rank}`, `${rank}-of-${suit}`,
+      // underscore forms
+      `${suit}_${rank}`, `${rank}_of_${suit}`,
+      // Title_Case with/without numeric prefix and optional _1 suffix
+      `${suitT}_${rankT}`, `${n}_${suitT}_${rankT}`, `${n}_${suitT}_${rankT}_1`,
+      // all-lower numeric underscore variants
+      `${n}_${suit}_${rank}`, `${n}_${suit}_${rank}_1`
+    ];
+  }
 
-/* ------------------ Render ------------------ */
-const grid = document.getElementById('grid');
-const lb  = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbDl  = document.getElementById('lbDl');
-document.getElementById('lbClose').onclick = ()=> lb.classList.remove('open');
-lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('open'); });
+  function loadBest(img, candidates, onFail){
+    let i=0, j=0;
+    (function tryNext(){
+      if(i>=candidates.length){ onFail(); return; }
+      const src = `cards/${candidates[i]}.${EXT[j]}`;
+      img.onerror = ()=>{ j++; if(j>=EXT.length){ j=0; i++; } tryNext(); };
+      img.onload  = ()=>{ img.onerror = null; };
+      img.src = src;
+    })();
+  }
 
-let shown = 0, total = 0;
+  /* Render */
+  const grid  = document.getElementById('grid');
+  const lb    = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbDl  = document.getElementById('lbDl');
+  document.getElementById('lbClose').onclick = ()=> lb.classList.remove('open');
+  lb.addEventListener('click', e=>{ if(e.target===lb) lb.classList.remove('open'); });
 
-function addCardFigure(title, candidates){
-  total++;
-  const fig = document.createElement('figure');
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.alt = title;
-  const cap = document.createElement('figcaption');
-  cap.textContent = title;
-  fig.appendChild(img); fig.appendChild(cap);
-
-  loadBest(img, candidates, ()=>{ fig.remove(); updateCount(); });
-
-  fig.addEventListener('load', ()=>{ /* noop, handled on img */ }, true);
-  img.addEventListener('load', ()=>{
-    shown++; updateCount();
-    fig.addEventListener('click', ()=>{
-      lb.classList.add('open');
-      lbImg.src = img.currentSrc || img.src;
-      lbImg.alt = title;
-      lbDl.href = lbImg.src;
-      lbDl.download = lbImg.src.split('/').pop();
+  let shown=0, total=0;
+  function updateCount(){
+    document.getElementById('count').textContent = `Showing ${shown} card${shown===1?'':'s'} (out of ${total})`;
+  }
+  function addCardFigure(title, candidates){
+    total++;
+    const fig=document.createElement('figure');
+    const img=document.createElement('img');
+    img.loading='lazy'; img.alt=title;
+    const cap=document.createElement('figcaption'); cap.textContent=title;
+    fig.append(img,cap);
+    loadBest(img,candidates,()=>{ fig.remove(); updateCount(); });
+    img.addEventListener('load', ()=>{
+      shown++; updateCount();
+      fig.addEventListener('click', ()=>{
+        lb.classList.add('open');
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = title;
+        lbDl.href = lbImg.src;
+        lbDl.download = lbImg.src.split('/').pop();
+      });
     });
-  });
-
-  grid.appendChild(fig);
-}
-
-function updateCount(){
-  const el = document.getElementById('count');
-  el.textContent = `Showing ${shown} card${shown===1?'':'s'} (out of ${total})`;
-}
-
-/* Build figures for all 78 */
-for(const [slug, title] of majors){
-  addCardFigure(title, majorCandidates(slug));
-}
-for(const suit of suits){
-  for(const [rankSlug, rankTitle] of ranks){
-    const title = `${rankTitle} of ${suit.charAt(0).toUpperCase()+suit.slice(1)}`;
-    addCardFigure(title, suitCandidates(suit, rankSlug));
+    grid.appendChild(fig);
   }
-}
-</script>
+
+  /* Build all 78 tiles */
+  for(const [slug, title] of majors) addCardFigure(title, majorCandidates(slug));
+  for(const suit of suits){
+    for(const [rankSlug, rankTitle] of ranks){
+      addCardFigure(`${rankTitle} of ${T(suit)}`, suitCandidates(suit, rankSlug));
+    }
+  }
+  </script>
 </body>
 </html>
